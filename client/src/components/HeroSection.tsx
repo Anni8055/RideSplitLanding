@@ -1,8 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Leaf, MapPin, Users, ArrowRight } from "lucide-react";
+import { useState } from "react";
 
 export default function HeroSection() {
+  // Function to scroll to a section when button is clicked
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return (
     <section className="relative min-h-screen bg-hero-pattern pt-28 md:pt-32 pb-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -22,12 +30,14 @@ export default function HeroSection() {
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
               <Button 
                 className="group px-8 py-6 rounded-full font-bold text-lg bg-gradient-to-r from-primary-500 to-primary-600 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+                onClick={() => scrollToSection('how-it-works')}
               >
                 Get Started <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button 
                 variant="outline"
                 className="px-8 py-6 rounded-full text-primary-600 font-medium border-2 border-primary-200 hover:border-primary-400 transition shadow-sm hover:shadow bg-white/95"
+                onClick={() => scrollToSection('how-it-works')}
               >
                 How It Works
               </Button>

@@ -3,6 +3,13 @@ import { motion } from "framer-motion";
 import { MapPin, Users, Car, ArrowRight } from "lucide-react";
 
 export default function HowItWorksSection() {
+  // Function to scroll to a section when button is clicked
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   const steps = [
     {
       icon: <MapPin className="h-7 w-7" />,
@@ -94,6 +101,7 @@ export default function HowItWorksSection() {
             </div>
             <Button
               className="group px-8 py-6 rounded-full font-bold text-lg bg-gradient-to-r from-primary-500 to-primary-600 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 whitespace-nowrap"
+              onClick={() => scrollToSection('benefits')}
             >
               Get Started <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>

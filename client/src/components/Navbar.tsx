@@ -6,6 +6,15 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   
+  // Function to scroll to a section when button is clicked
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+      setMobileMenuOpen(false); // Close mobile menu if open
+    }
+  };
+  
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
@@ -43,12 +52,13 @@ export default function Navbar() {
           
           {/* Desktop menu */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#how-it-works" className="text-neutral-700 hover:text-primary-600 transition-colors font-medium">How It Works</a>
-            <a href="#benefits" className="text-neutral-700 hover:text-primary-600 transition-colors font-medium">Benefits</a>
-            <a href="#testimonials" className="text-neutral-700 hover:text-primary-600 transition-colors font-medium">Testimonials</a>
-            <a href="#faq" className="text-neutral-700 hover:text-primary-600 transition-colors font-medium">FAQ</a>
+            <button onClick={() => scrollToSection('how-it-works')} className="text-neutral-700 hover:text-primary-600 transition-colors font-medium">How It Works</button>
+            <button onClick={() => scrollToSection('benefits')} className="text-neutral-700 hover:text-primary-600 transition-colors font-medium">Benefits</button>
+            <button onClick={() => scrollToSection('testimonials')} className="text-neutral-700 hover:text-primary-600 transition-colors font-medium">Testimonials</button>
+            <button onClick={() => scrollToSection('faq')} className="text-neutral-700 hover:text-primary-600 transition-colors font-medium">FAQ</button>
             <Button
               className="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+              onClick={() => scrollToSection('how-it-works')}
             >
               Get Started
             </Button>
@@ -59,36 +69,32 @@ export default function Navbar() {
       {/* Mobile menu dropdown */}
       <div className={`${mobileMenuOpen ? 'block' : 'hidden'} md:hidden bg-white absolute w-full border-b border-gray-200 shadow-lg`}>
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          <a 
-            href="#how-it-works" 
-            onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2 rounded-md text-base font-medium hover:bg-primary-50 hover:text-primary-600"
+          <button 
+            onClick={() => scrollToSection('how-it-works')}
+            className="block w-full text-left px-3 py-2 rounded-md text-base font-medium hover:bg-primary-50 hover:text-primary-600"
           >
             How It Works
-          </a>
-          <a 
-            href="#benefits" 
-            onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2 rounded-md text-base font-medium hover:bg-primary-50 hover:text-primary-600"
+          </button>
+          <button 
+            onClick={() => scrollToSection('benefits')}
+            className="block w-full text-left px-3 py-2 rounded-md text-base font-medium hover:bg-primary-50 hover:text-primary-600"
           >
             Benefits
-          </a>
-          <a 
-            href="#testimonials" 
-            onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2 rounded-md text-base font-medium hover:bg-primary-50 hover:text-primary-600"
+          </button>
+          <button 
+            onClick={() => scrollToSection('testimonials')}
+            className="block w-full text-left px-3 py-2 rounded-md text-base font-medium hover:bg-primary-50 hover:text-primary-600"
           >
             Testimonials
-          </a>
-          <a 
-            href="#faq" 
-            onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2 rounded-md text-base font-medium hover:bg-primary-50 hover:text-primary-600"
+          </button>
+          <button 
+            onClick={() => scrollToSection('faq')}
+            className="block w-full text-left px-3 py-2 rounded-md text-base font-medium hover:bg-primary-50 hover:text-primary-600"
           >
             FAQ
-          </a>
+          </button>
           <Button
-            onClick={() => setMobileMenuOpen(false)}
+            onClick={() => scrollToSection('how-it-works')}
             className="w-full mt-3 bg-gradient-to-r from-primary-500 to-primary-600"
           >
             Get Started
