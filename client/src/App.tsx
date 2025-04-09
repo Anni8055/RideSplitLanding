@@ -9,6 +9,7 @@ import Home from "@/pages/Home";
 import AuthPage from "@/pages/auth-page";
 import DashboardPage from "@/pages/dashboard-page";
 import HelpPage from "@/pages/help-page";
+import ThreeDShowcase from "@/pages/3d-showcase";
 
 function Router() {
   return (
@@ -16,6 +17,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/auth" component={AuthPage} />
       <Route path="/help" component={HelpPage} />
+      <Route path="/3d" component={ThreeDShowcase} />
       <ProtectedRoute path="/dashboard" component={DashboardPage} />
       <Route component={NotFound} />
     </Switch>
