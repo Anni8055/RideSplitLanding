@@ -53,7 +53,15 @@ export default function FAQSection() {
                 onClick={() => toggleFAQ(index)}
               >
                 <span className="font-medium text-lg">{faq.question}</span>
-                <i className={`fas fa-chevron-down text-primary-500 transition-transform ${openFAQ === index ? 'transform rotate-180' : ''}`}></i>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={`h-5 w-5 text-primary-500 transition-transform ${openFAQ === index ? 'transform rotate-180' : ''}`}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
               </button>
               <div className={`${openFAQ === index ? 'block' : 'hidden'} px-6 py-4 bg-gray-50 border-t border-gray-100`}>
                 <p className="text-gray-600">
@@ -73,7 +81,15 @@ export default function FAQSection() {
         >
           <a href="#" className="text-primary-600 font-medium hover:text-primary-700 flex items-center justify-center">
             View All FAQs
-            <i className="fas fa-arrow-right ml-2 text-sm"></i>
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              className="h-4 w-4 ml-2" 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              stroke="currentColor"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
           </a>
         </motion.div>
       </div>
