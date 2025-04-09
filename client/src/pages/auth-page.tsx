@@ -21,7 +21,7 @@ import { Loader2 } from "lucide-react";
 export default function AuthPage() {
   const { user, loginMutation, registerMutation, isLoading } = useAuth();
   const [selectedTab, setSelectedTab] = useState<"login" | "register">("login");
-  const [registrationType, setRegistrationType] = useState<"rider" | "driver" | null>(null);
+  const [registrationType, setRegistrationType] = useState<"rider" | "carowner" | null>(null);
 
   // Redirect if user is already logged in
   if (user) {
@@ -53,7 +53,7 @@ export default function AuthPage() {
             <div className="w-full md:w-3/5 p-6 md:p-12">
               <div className="max-w-md mx-auto">
                 <h1 className="text-2xl font-bold mb-1">
-                  {registrationType === "rider" ? "Join as a Rider" : "Join as a Driver"}
+                  {registrationType === "rider" ? "Join as a Rider" : "Join as a Car Owner"}
                 </h1>
                 <p className="text-gray-500 mb-6">
                   {registrationType === "rider" 
@@ -66,9 +66,9 @@ export default function AuthPage() {
                     onSubmit={(data) => registerMutation.mutate({ ...data, role: "rider" })} 
                   />
                 ) : (
-                  <DriverRegisterForm 
+                  <CarOwnerRegisterForm 
                     isLoading={registerMutation.isPending} 
-                    onSubmit={(data) => registerMutation.mutate({ ...data, role: "driver" })} 
+                    onSubmit={(data) => registerMutation.mutate({ ...data, role: "carowner" })} 
                   />
                 )}
                 
@@ -92,7 +92,7 @@ export default function AuthPage() {
                 <h2 className="text-2xl font-bold mb-6">
                   {registrationType === "rider" 
                     ? "Benefits of riding with us" 
-                    : "Benefits of driving with us"}
+                    : "Benefits of being a car owner with us"}
                 </h2>
                 
                 <div className="space-y-6">
@@ -123,8 +123,8 @@ export default function AuthPage() {
                           <ShieldCheck className="w-6 h-6" />
                         </div>
                         <div className="ml-4">
-                          <h3 className="font-medium">Safe and vetted drivers</h3>
-                          <p className="text-gray-600 text-sm">All drivers are verified and reviewed by other riders for your safety</p>
+                          <h3 className="font-medium">Safe and vetted car owners</h3>
+                          <p className="text-gray-600 text-sm">All car owners are verified and reviewed by other riders for your safety</p>
                         </div>
                       </div>
                     </>
@@ -258,18 +258,18 @@ export default function AuthPage() {
                       className={`border-2 rounded-xl cursor-pointer transition-all hover:shadow-md ${
                         selectedTab === "register" ? "hover:border-primary-300" : ""
                       }`}
-                      onClick={() => setRegistrationType("driver")}
+                      onClick={() => setRegistrationType("carowner")}
                     >
                       <CardContent className="p-6 flex flex-col items-center text-center">
                         <div className="w-16 h-16 rounded-full bg-primary-100 flex items-center justify-center mb-4">
                           <Car className="h-8 w-8 text-primary-600" />
                         </div>
-                        <h2 className="text-xl font-bold mb-2">Driver</h2>
+                        <h2 className="text-xl font-bold mb-2">Car Owner</h2>
                         <p className="text-gray-500 text-sm mb-4">
                           Offer rides and earn money while commuting
                         </p>
                         <Button className="mt-auto" variant="outline">
-                          Sign up to drive <ArrowRight className="ml-2 h-4 w-4" />
+                          Sign up as car owner <ArrowRight className="ml-2 h-4 w-4" />
                         </Button>
                       </CardContent>
                     </Card>
@@ -495,7 +495,7 @@ function RiderRegisterForm({ isLoading, onSubmit }: { isLoading: boolean; onSubm
   );
 }
 
-function DriverRegisterForm({ isLoading, onSubmit }: { isLoading: boolean; onSubmit: (data: any) => void }) {
+function CarOwnerRegisterForm({ isLoading, onSubmit }: { isLoading: boolean; onSubmit: (data: any) => void }) {
   const registerSchema = insertUserSchema
     .extend({
       password: z.string().min(6, "Password must be at least 6 characters"),
@@ -515,7 +515,7 @@ function DriverRegisterForm({ isLoading, onSubmit }: { isLoading: boolean; onSub
       confirmPassword: "",
       email: "",
       fullName: "",
-      role: "driver",
+      role: "carowner",
       phone: "",
     },
   });
@@ -644,7 +644,7 @@ function DriverRegisterForm({ isLoading, onSubmit }: { isLoading: boolean; onSub
         <div className="pt-4">
           <Button type="submit" className="w-full py-6 text-lg" disabled={isLoading}>
             {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-            Create Driver Account
+            Create Car Owner Account
           </Button>
           <p className="text-xs text-gray-500 mt-2">
             By signing up, you agree to our Terms of Service and Privacy Policy. We'll ask for more vehicle information after registration.

@@ -4,7 +4,7 @@ import { z } from "zod";
 import { relations } from "drizzle-orm";
 
 // Enums
-export const userRoleEnum = pgEnum('user_role', ['rider', 'driver', 'both']);
+export const userRoleEnum = pgEnum('user_role', ['rider', 'carowner', 'both']);
 export const rideStatusEnum = pgEnum('ride_status', ['scheduled', 'active', 'completed', 'cancelled']);
 
 // Users table
