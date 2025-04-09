@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { Leaf, MapPin, Users, ArrowRight, Car, Calendar, Clock, Search, Navigation } from "lucide-react";
 import { useState } from "react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 
 export default function HeroSection() {
   const [fromLocation, setFromLocation] = useState("");
@@ -13,6 +13,12 @@ export default function HeroSection() {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [activeTab, setActiveTab] = useState("ride");
+  const [, navigate] = useLocation();
+
+  // Function to handle the get started action
+  const handleGetStarted = () => {
+    navigate("/auth");
+  };
 
   // Function to scroll to a section when button is clicked
   const scrollToSection = (sectionId: string) => {
