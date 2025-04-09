@@ -17,14 +17,15 @@ export default function FAQSection() {
     }
   ];
 
-  const [openFAQ, setOpenFAQ] = useState<number | null>(null);
+  // Start with the first FAQ open by default
+  const [openFAQ, setOpenFAQ] = useState<number | null>(0);
 
   const toggleFAQ = (index: number) => {
     setOpenFAQ(openFAQ === index ? null : index);
   };
 
   return (
-    <section className="py-20 bg-white">
+    <section id="faq" className="py-20 bg-white">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           className="text-center mb-16"
