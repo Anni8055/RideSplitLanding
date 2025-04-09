@@ -67,9 +67,9 @@ export default function HeroSection() {
             </p>
             
             <div className="mb-6">
-              <Link href="/3d-interactive">
+              <Link href="/3d-story">
                 <Button className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 shadow-lg text-base px-6 py-6 font-semibold flex items-center gap-2 transform transition-all hover:scale-105">
-                  <span className="text-lg mr-1">🚗</span> Experience RideSplit in 3D
+                  <span className="text-lg mr-1">🚗</span> Experience RideSplit Journey
                   <ArrowRight className="ml-1 h-5 w-5" />
                 </Button>
               </Link>
