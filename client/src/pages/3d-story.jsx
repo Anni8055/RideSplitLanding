@@ -13,14 +13,14 @@ const ThreeDStory = () => {
   });
 
   const steps = [
-    { id: 0, name: 'home', title: 'Home', description: 'Car waiting at the starting point', duration: 4000 },
-    { id: 1, name: 'pickup1', title: 'Pickup 1', description: 'First rider enters the car', duration: 4000 },
-    { id: 2, name: 'pickup2', title: 'Pickup 2', description: 'Second rider enters the car', duration: 4000 },
-    { id: 3, name: 'pickup3', title: 'Pickup 3', description: 'Third rider enters the car', duration: 4000 },
-    { id: 4, name: 'journey', title: 'Journey', description: 'Car journeying to destination', duration: 4000 },
-    { id: 5, name: 'destination', title: 'Destination', description: 'Car arrives at destination', duration: 4000 },
-    { id: 6, name: 'friendship', title: 'Friendship', description: 'Group enjoying time together', duration: 6000 }, // Extended duration for emphasis
-    { id: 7, name: 'impact', title: 'Impact', description: 'Environmental impact statistics', duration: 4000 }
+    { id: 0, name: 'home', title: 'Home', description: 'Car waiting at the starting point', duration: 2000 },
+    { id: 1, name: 'pickup1', title: 'Pickup 1', description: 'First rider enters the car', duration: 2000 },
+    { id: 2, name: 'pickup2', title: 'Pickup 2', description: 'Second rider enters the car', duration: 2000 },
+    { id: 3, name: 'pickup3', title: 'Pickup 3', description: 'Third rider enters the car', duration: 2000 },
+    { id: 4, name: 'journey', title: 'Journey', description: 'Car journeying to destination', duration: 2500 },
+    { id: 5, name: 'destination', title: 'Destination', description: 'Car arrives at destination', duration: 2000 },
+    { id: 6, name: 'friendship', title: 'Friendship', description: 'Group enjoying time together', duration: 3000 }, // Extended duration for emphasis
+    { id: 7, name: 'impact', title: 'Impact', description: 'Environmental impact statistics', duration: 2500 }
   ];
 
   // Auto advance through steps with variable durations
@@ -125,7 +125,7 @@ const ThreeDStory = () => {
               className="absolute bottom-22 left-50 w-8 h-20"
               initial={{ x: 0 }}
               animate={{ x: 30, y: -2 }}
-              transition={{ duration: 2 }}
+              transition={{ duration: 1 }}
             >
               <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
                 <span className="text-xs">👋</span>
@@ -151,7 +151,7 @@ const ThreeDStory = () => {
               className="absolute bottom-24 w-48 h-24"
               initial={{ x: -50 }}
               animate={{ x: 300 }}
-              transition={{ duration: 4, ease: "linear" }}
+              transition={{ duration: 2, ease: "linear" }}
             >
               <div className="w-full h-full relative">
                 <div className="absolute top-0 left-0 w-full h-2/3 bg-primary-500 rounded-t-lg"></div>
