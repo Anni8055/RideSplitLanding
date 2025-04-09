@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <!-- Background and road -->
+  <rect x="0" y="0" width="800" height="600" fill="#f0f9ff" />
+  <path d="M0,450 C200,430 600,470 800,440 L800,600 L0,600 Z" fill="#e0e0e0" />
+  <path d="M0,480 C200,460 600,500 800,470 L800,600 L0,600 Z" fill="#cccccc" />
+  
+  <!-- Car body -->
+  <rect x="150" y="350" width="500" height="80" rx="20" fill="#00B8E6" />
+  <rect x="200" y="300" width="400" height="70" rx="30" fill="#00B8E6" />
+  
+  <!-- Windows -->
+  <rect x="220" y="310" width="80" height="50" rx="10" fill="#d6f5ff" />
+  <rect x="320" y="310" width="80" height="50" rx="10" fill="#d6f5ff" />
+  <rect x="420" y="310" width="80" height="50" rx="10" fill="#d6f5ff" />
+  <rect x="520" y="310" width="60" height="50" rx="10" fill="#d6f5ff" />
+  
+  <!-- Wheels -->
+  <circle cx="230" cy="430" r="40" fill="#333" />
+  <circle cx="230" cy="430" r="25" fill="#666" />
+  <circle cx="570" cy="430" r="40" fill="#333" />
+  <circle cx="570" cy="430" r="25" fill="#666" />
+  
+  <!-- Happy person 1 in window -->
+  <circle cx="260" cy="335" r="15" fill="#FFD700" />
+  <path d="M252,335 A8,8 0 0,1 268,335" stroke="#333" stroke-width="2" fill="none" />
+  
+  <!-- Happy person 2 in window -->
+  <circle cx="360" cy="335" r="15" fill="#FF6B6B" />
+  <path d="M352,335 A8,8 0 0,1 368,335" stroke="#333" stroke-width="2" fill="none" />
+  
+  <!-- Happy person 3 in window -->
+  <circle cx="460" cy="335" r="15" fill="#66CC33" />
+  <path d="M452,335 A8,8 0 0,1 468,335" stroke="#333" stroke-width="2" fill="none" />
+  
+  <!-- Driver in window -->
+  <circle cx="550" cy="335" r="15" fill="#964B00" />
+  <path d="M542,335 A8,8 0 0,1 558,335" stroke="#333" stroke-width="2" fill="none" />
+  
+  <!-- Trees and environment -->
+  <path d="M50,380 L80,300 L110,380 Z" fill="#66CC33" />
+  <rect x="75" y="380" width="10" height="30" fill="#8B4513" />
+  
+  <path d="M700,400 L730,320 L760,400 Z" fill="#66CC33" />
+  <rect x="725" y="400" width="10" height="30" fill="#8B4513" />
+  
+  <!-- Sun -->
+  <circle cx="100" cy="100" r="50" fill="#FFD700" />
+  <line x1="100" y1="30" x2="100" y2="10" stroke="#FFD700" stroke-width="6" />
+  <line x1="100" y1="170" x2="100" y2="190" stroke="#FFD700" stroke-width="6" />
+  <line x1="30" y1="100" x2="10" y2="100" stroke="#FFD700" stroke-width="6" />
+  <line x1="170" y1="100" x2="190" y2="100" stroke="#FFD700" stroke-width="6" />
+  <line x1="50" y1="50" x2="35" y2="35" stroke="#FFD700" stroke-width="6" />
+  <line x1="150" y1="150" x2="165" y2="165" stroke="#FFD700" stroke-width="6" />
+  <line x1="50" y1="150" x2="35" y2="165" stroke="#FFD700" stroke-width="6" />
+  <line x1="150" y1="50" x2="165" y2="35" stroke="#FFD700" stroke-width="6" />
+  
+  <!-- Clouds -->
+  <ellipse cx="200" cy="120" rx="60" ry="30" fill="white" />
+  <ellipse cx="250" cy="100" rx="40" ry="25" fill="white" />
+  <ellipse cx="150" cy="110" rx="40" ry="20" fill="white" />
+  
+  <ellipse cx="600" cy="150" rx="70" ry="35" fill="white" />
+  <ellipse cx="650" cy="130" rx="50" ry="30" fill="white" />
+  <ellipse cx="550" cy="140" rx="50" ry="25" fill="white" />
+  
+  <!-- Text -->
+  <text x="400" y="220" text-anchor="middle" font-family="Arial" font-size="32" font-weight="bold" fill="#00B8E6">Happy People Carpooling</text>
+  <text x="400" y="255" text-anchor="middle" font-family="Arial" font-size="24" fill="#333">Save Money, Make Friends, Help the Environment</text>
+</svg>

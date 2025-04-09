@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Leaf, MapPin, Users, ArrowRight, Car, Calendar, Clock, Search, Navigation } from "lucide-react";
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
+import carpoolingImage from "../assets/carpooling.svg";
 
 export default function HeroSection() {
   const [fromLocation, setFromLocation] = useState("");
@@ -30,7 +31,17 @@ export default function HeroSection() {
 
   return (
     <section className="relative min-h-screen bg-gradient-to-b from-primary-50 to-white pt-28 md:pt-32 pb-20 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Full-width image behind hero content */}
+      <motion.div
+        className="absolute inset-0 z-0 opacity-10 pointer-events-none"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.1 }}
+        transition={{ duration: 1 }}
+      >
+        <img src={carpoolingImage} alt="Happy people carpooling" className="w-full h-full object-cover" />
+      </motion.div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-12">
           {/* Text content */}
           <motion.div 
@@ -46,7 +57,7 @@ export default function HeroSection() {
               Join affordable carpools for your daily commute. Save money and reduce your carbon footprint with RideSplit.
             </p>
             
-            <div className="mt-10 flex flex-wrap gap-6">
+            <div className="mt-8 flex flex-wrap gap-6">
               <div className="flex items-center">
                 <div className="bg-primary-50 p-2 rounded-full mr-3">
                   <MapPin className="h-5 w-5 text-primary-500" />
@@ -66,6 +77,20 @@ export default function HeroSection() {
                 <p className="text-sm font-medium text-neutral-700">Eco-Friendly Travel</p>
               </div>
             </div>
+            
+            {/* Happy people carpooling image */}
+            <motion.div 
+              className="mt-8 lg:hidden"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <img 
+                src={carpoolingImage} 
+                alt="Happy people carpooling" 
+                className="rounded-xl shadow-lg max-w-full h-auto"
+              />
+            </motion.div>
           </motion.div>
           
           {/* Booking card - Uber-style */}
