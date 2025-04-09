@@ -1,35 +1,56 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { Leaf, MapPin, Users, ArrowRight } from "lucide-react";
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-primary-50 to-neutral-50 pt-28 md:pt-32 pb-20 overflow-hidden">
+    <section className="relative min-h-screen bg-hero-pattern pt-28 md:pt-32 pb-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-center justify-between">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           <motion.div 
             className="w-full md:w-1/2 mb-12 md:mb-0"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-neutral-900 mb-4">
-              Split Your Ride, <br className="hidden sm:block"/> Not Your Wallet <span className="inline-block animate-pulse">🚗💸</span>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-neutral-800 mb-6">
+              Split Your Ride, <br className="hidden sm:block"/> Not Your Wallet <span className="inline-block">🚗</span>
             </h1>
-            <p className="text-lg sm:text-xl text-gray-600 mb-8 max-w-lg">
-              Connecting students and employees with nearby car owners for affordable, sustainable daily commuting.
+            <p className="text-lg sm:text-xl text-neutral-600 mb-8 max-w-xl">
+              Connect with nearby drivers and passengers for affordable, sustainable daily commutes. Save money and reduce your carbon footprint.
             </p>
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
               <Button 
-                className="px-8 py-7 rounded-full text-white font-bold text-lg bg-gradient-to-r from-primary-500 to-secondary-500 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+                className="group px-8 py-6 rounded-full font-bold text-lg bg-gradient-to-r from-primary-500 to-primary-600 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
               >
-                Join Now
+                Get Started <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button 
                 variant="outline"
-                className="px-8 py-7 rounded-full text-primary-600 font-medium border border-primary-200 hover:border-primary-300 transition shadow-sm hover:shadow bg-white"
+                className="px-8 py-6 rounded-full text-primary-600 font-medium border-2 border-primary-200 hover:border-primary-400 transition shadow-sm hover:shadow bg-white/95"
               >
-                Learn More
+                How It Works
               </Button>
+            </div>
+            <div className="mt-10 flex flex-wrap gap-6">
+              <div className="flex items-center">
+                <div className="bg-primary-50 p-2 rounded-full mr-3">
+                  <MapPin className="h-5 w-5 text-primary-500" />
+                </div>
+                <p className="text-sm font-medium text-neutral-700">50+ Cities Covered</p>
+              </div>
+              <div className="flex items-center">
+                <div className="bg-primary-50 p-2 rounded-full mr-3">
+                  <Users className="h-5 w-5 text-primary-500" />
+                </div>
+                <p className="text-sm font-medium text-neutral-700">10,000+ Active Riders</p>
+              </div>
+              <div className="flex items-center">
+                <div className="bg-primary-50 p-2 rounded-full mr-3">
+                  <Leaf className="h-5 w-5 text-primary-500" />
+                </div>
+                <p className="text-sm font-medium text-neutral-700">Eco-Friendly Travel</p>
+              </div>
             </div>
           </motion.div>
           <motion.div 
@@ -38,26 +59,53 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <img 
-              src="https://images.unsplash.com/photo-1532321216990-d421dcdc0c6d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
-              alt="People carpooling in a car" 
-              className="w-full h-auto object-cover rounded-lg shadow-2xl"
-              width="600"
-              height="450"
-            />
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl border-8 border-white">
+              <img 
+                src="https://images.unsplash.com/photo-1577210897949-1f56f943a493?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                alt="People sharing a ride through the city" 
+                className="w-full h-auto object-cover"
+                width="600"
+                height="450"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+            </div>
             <motion.div 
-              className="absolute -bottom-6 -left-6 bg-white rounded-lg shadow-lg p-4 max-w-xs"
+              className="absolute -bottom-6 -left-6 bg-white rounded-lg shadow-lg p-5 max-w-xs border border-neutral-100"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
             >
               <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center text-primary-600">
-                  <i className="fas fa-leaf text-xl"></i>
+                <div className="w-12 h-12 bg-secondary-50 rounded-full flex items-center justify-center text-secondary-500">
+                  <Leaf className="h-6 w-6" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-gray-600">CO2 Reduced This Week</p>
-                  <p className="text-xl font-bold text-primary-600">2,450 kg</p>
+                  <p className="text-sm font-medium text-neutral-600">CO2 Reduced This Month</p>
+                  <p className="text-xl font-bold text-secondary-600">12,450 kg</p>
+                </div>
+              </div>
+            </motion.div>
+            <motion.div 
+              className="absolute -top-4 -right-4 bg-white rounded-lg shadow-lg p-5 max-w-xs border border-neutral-100"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+            >
+              <div className="flex items-center space-x-4">
+                <div className="flex flex-shrink-0 -space-x-2">
+                  <div className="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center text-primary-500 border-2 border-white">
+                    <span className="text-xs font-bold">JD</span>
+                  </div>
+                  <div className="w-8 h-8 rounded-full bg-primary-200 flex items-center justify-center text-primary-600 border-2 border-white">
+                    <span className="text-xs font-bold">KS</span>
+                  </div>
+                  <div className="w-8 h-8 rounded-full bg-primary-300 flex items-center justify-center text-white border-2 border-white">
+                    <span className="text-xs font-bold">MP</span>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-neutral-600">Average Savings</p>
+                  <p className="text-xl font-bold text-primary-600">$175/month</p>
                 </div>
               </div>
             </motion.div>
