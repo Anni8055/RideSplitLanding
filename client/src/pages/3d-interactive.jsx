@@ -65,25 +65,128 @@ const ThreeDInteractive = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            {/* Spline 3D Scene */}
-            <div className="w-full aspect-[16/9] bg-gradient-to-br from-primary-100 to-primary-50 rounded-xl shadow-xl overflow-hidden mb-8">
-              {/* Replace the src with your actual Spline scene URL */}
-              <iframe
-                title="RideSplit 3D Experience"
-                className="w-full h-full border-none"
-                src="https://prod.spline.design/cUycSXM-V1DNNTsR/scene.splinecode"
-                allowFullScreen
-              />
+            {/* Simulated 3D Scene */}
+            <div className="w-full aspect-[16/9] bg-gradient-to-br from-primary-100 to-primary-50 rounded-xl shadow-xl overflow-hidden mb-8 relative">
+              <div className="absolute inset-0 flex items-center justify-center">
+                <motion.div 
+                  className="flex flex-col items-center"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 1 }}
+                >
+                  <div className="relative mb-12 w-full max-w-3xl">
+                    {/* Animated Car */}
+                    <motion.div 
+                      className="absolute top-1/2 left-0 transform -translate-y-1/2 z-10 flex flex-col items-center"
+                      initial={{ x: -100 }}
+                      animate={{ x: 350 }}
+                      transition={{ 
+                        duration: 5, 
+                        repeat: Infinity,
+                        repeatType: "loop"
+                      }}
+                    >
+                      <div className="relative">
+                        <div className="w-32 h-16 bg-primary-500 rounded-lg shadow-md relative">
+                          <div className="absolute top-1/4 left-1/4 w-1/2 h-1/2 bg-blue-200 rounded-sm"></div>
+                          <div className="absolute -bottom-2 left-2 w-5 h-5 bg-gray-800 rounded-full"></div>
+                          <div className="absolute -bottom-2 right-2 w-5 h-5 bg-gray-800 rounded-full"></div>
+                        </div>
+                        <div className="absolute -bottom-4 left-8 text-xs text-purple-700 font-bold">RideSplit Car</div>
+                      </div>
+                    </motion.div>
+
+                    {/* Road */}
+                    <div className="w-full h-2 bg-gray-600 relative">
+                      <div className="absolute top-1/2 left-0 w-full h-px bg-white" style={{ backgroundImage: 'linear-gradient(to right, white 50%, transparent 50%)', backgroundSize: '20px 1px' }}></div>
+                    </div>
+
+                    {/* People */}
+                    <motion.div 
+                      className="absolute top-0 left-20 transform -translate-y-full"
+                      initial={{ y: 0 }}
+                      animate={{ y: [0, -10, 0] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    >
+                      <div className="flex flex-col items-center">
+                        <div className="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center">
+                          <span className="text-xs">👤</span>
+                        </div>
+                        <div className="mt-1 text-xs font-bold">Rider 1</div>
+                      </div>
+                    </motion.div>
+
+                    <motion.div 
+                      className="absolute top-0 left-60 transform -translate-y-full"
+                      initial={{ y: 0 }}
+                      animate={{ y: [0, -5, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity, delay: 0.5 }}
+                    >
+                      <div className="flex flex-col items-center">
+                        <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                          <span className="text-xs">👤</span>
+                        </div>
+                        <div className="mt-1 text-xs font-bold">Rider 2</div>
+                      </div>
+                    </motion.div>
+
+                    <motion.div 
+                      className="absolute top-0 left-40 transform -translate-y-full"
+                      initial={{ y: 0 }}
+                      animate={{ y: [0, -8, 0] }}
+                      transition={{ duration: 1.8, repeat: Infinity, delay: 0.3 }}
+                    >
+                      <div className="flex flex-col items-center">
+                        <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center">
+                          <span className="text-xs">👤</span>
+                        </div>
+                        <div className="mt-1 text-xs font-bold">Rider 3</div>
+                      </div>
+                    </motion.div>
+                  </div>
+
+                  {/* Environmental Impact Visualization */}
+                  <div className="flex justify-center space-x-16 mt-6">
+                    <motion.div 
+                      className="flex flex-col items-center"
+                      initial={{ scale: 0.8 }}
+                      animate={{ scale: [0.8, 1.1, 0.8] }}
+                      transition={{ duration: 3, repeat: Infinity }}
+                    >
+                      <div className="text-3xl mb-2">🌳</div>
+                      <div className="text-xs font-medium text-green-700">+1 Tree</div>
+                    </motion.div>
+
+                    <motion.div 
+                      className="flex flex-col items-center"
+                      initial={{ scale: 0.8 }}
+                      animate={{ scale: [0.8, 1.1, 0.8] }}
+                      transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+                    >
+                      <div className="text-3xl mb-2">💨</div>
+                      <div className="text-xs font-medium text-blue-700">-5kg CO₂</div>
+                    </motion.div>
+
+                    <motion.div 
+                      className="flex flex-col items-center"
+                      initial={{ scale: 0.8 }}
+                      animate={{ scale: [0.8, 1.1, 0.8] }}
+                      transition={{ duration: 3, repeat: Infinity, delay: 2 }}
+                    >
+                      <div className="text-3xl mb-2">👫</div>
+                      <div className="text-xs font-medium text-purple-700">+2 Friends</div>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              </div>
             </div>
 
             <Button
               className="mb-12 flex items-center gap-2 bg-white text-primary-600 border border-primary-200 hover:bg-primary-50 shadow"
               onClick={() => {
-                // Here you would reload the iframe or reset the scene
-                const iframe = document.querySelector('iframe');
-                if (iframe) {
-                  iframe.src = iframe.src;
-                }
+                // Reset animation by re-rendering the component
+                setShowScene(false);
+                setTimeout(() => setShowScene(true), 100);
               }}
             >
               <RefreshCw className="h-4 w-4" /> Replay Journey
