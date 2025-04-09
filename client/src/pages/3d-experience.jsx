@@ -1,5 +1,5 @@
 import React from 'react';
-import CSSCar from '@/components/3D/CSSCar';
+import CarShowcase from '@/components/3D/CarShowcase';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Link } from 'wouter';
@@ -33,16 +33,7 @@ export default function ThreeDExperience() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
           >
-            <CSSCar className="w-full h-full" carColor="#00B8E6" />
-            
-            {/* Decorative elements */}
-            <div className="absolute top-4 left-4 bg-white/80 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium text-primary-600">
-              Interactive 3D Car
-            </div>
-            
-            <div className="absolute bottom-4 right-4 bg-white/80 backdrop-blur-sm px-3 py-1 rounded-full text-sm text-primary-600">
-              Drag to Rotate • Scroll to Zoom
-            </div>
+            <CarShowcase className="w-full h-full" />
           </motion.div>
         </div>
         
@@ -87,27 +78,47 @@ export default function ThreeDExperience() {
           </Card>
         </div>
         
-        {/* Color variants */}
+        {/* Car Features */}
         <div className="mb-16">
-          <h2 className="text-2xl font-bold text-center mb-8">Choose Your Color</h2>
+          <h2 className="text-2xl font-bold text-center mb-8">Key Features</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <div className="h-[200px]">
-                <CSSCar className="w-full h-full" carColor="#00B8E6" />
+              <div className="aspect-video bg-gradient-to-r from-primary-100 to-primary-50 flex items-center justify-center p-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-primary-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="8"></circle>
+                  <line x1="3" y1="12" x2="9" y2="12"></line>
+                  <line x1="15" y1="12" x2="21" y2="12"></line>
+                </svg>
               </div>
-              <div className="p-4 text-center font-semibold text-primary-600">Ocean Blue</div>
+              <div className="p-4">
+                <h3 className="font-bold text-lg mb-2">360° Views</h3>
+                <p className="text-neutral-600">Explore every angle of available cars with our interactive 360-degree viewer.</p>
+              </div>
             </div>
+            
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <div className="h-[200px]">
-                <CSSCar className="w-full h-full" carColor="#66CC33" />
+              <div className="aspect-video bg-gradient-to-r from-green-100 to-green-50 flex items-center justify-center p-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-green-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path>
+                  <line x1="4" y1="22" x2="4" y2="15"></line>
+                </svg>
               </div>
-              <div className="p-4 text-center font-semibold text-green-600">Eco Green</div>
+              <div className="p-4">
+                <h3 className="font-bold text-lg mb-2">Color Options</h3>
+                <p className="text-neutral-600">Choose from a variety of colors to match your style and personality.</p>
+              </div>
             </div>
+            
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <div className="h-[200px]">
-                <CSSCar className="w-full h-full" carColor="#FF5733" />
+              <div className="aspect-video bg-gradient-to-r from-orange-100 to-orange-50 flex items-center justify-center p-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-orange-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                </svg>
               </div>
-              <div className="p-4 text-center font-semibold text-orange-600">Sunset Orange</div>
+              <div className="p-4">
+                <h3 className="font-bold text-lg mb-2">Performance Data</h3>
+                <p className="text-neutral-600">Get real-time information about fuel efficiency and ride comfort for each vehicle.</p>
+              </div>
             </div>
           </div>
         </div>
