@@ -1,9 +1,19 @@
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { Leaf, MapPin, Users, ArrowRight } from "lucide-react";
+import { Leaf, MapPin, Users, ArrowRight, Car, Calendar, Clock, Search, Navigation } from "lucide-react";
 import { useState } from "react";
+import { Link } from "wouter";
 
 export default function HeroSection() {
+  const [fromLocation, setFromLocation] = useState("");
+  const [toLocation, setToLocation] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [activeTab, setActiveTab] = useState("ride");
+
   // Function to scroll to a section when button is clicked
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);
@@ -11,12 +21,14 @@ export default function HeroSection() {
       section.scrollIntoView({ behavior: "smooth" });
     }
   };
+
   return (
-    <section className="relative min-h-screen bg-hero-pattern pt-28 md:pt-32 pb-20 overflow-hidden">
+    <section className="relative min-h-screen bg-gradient-to-b from-primary-50 to-white pt-28 md:pt-32 pb-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+        <div className="flex flex-col lg:flex-row items-center gap-12">
+          {/* Text content */}
           <motion.div 
-            className="w-full md:w-1/2 mb-12 md:mb-0"
+            className="w-full lg:w-1/2 mb-8 lg:mb-0"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -25,23 +37,9 @@ export default function HeroSection() {
               Split Your Ride, <br className="hidden sm:block"/> Not Your Wallet <span className="inline-block">🚗</span>
             </h1>
             <p className="text-lg sm:text-xl text-neutral-600 mb-8 max-w-xl">
-              Connect with nearby drivers and passengers for affordable, sustainable daily commutes. Save money and reduce your carbon footprint.
+              Join affordable carpools for your daily commute. Save money and reduce your carbon footprint with RideSplit.
             </p>
-            <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-              <Button 
-                className="group px-8 py-6 rounded-full font-bold text-lg bg-gradient-to-r from-primary-500 to-primary-600 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
-                onClick={() => scrollToSection('how-it-works')}
-              >
-                Get Started <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              <Button 
-                variant="outline"
-                className="px-8 py-6 rounded-full text-primary-600 font-medium border-2 border-primary-200 hover:border-primary-400 transition shadow-sm hover:shadow bg-white/95"
-                onClick={() => scrollToSection('how-it-works')}
-              >
-                How It Works
-              </Button>
-            </div>
+            
             <div className="mt-10 flex flex-wrap gap-6">
               <div className="flex items-center">
                 <div className="bg-primary-50 p-2 rounded-full mr-3">
@@ -63,59 +61,189 @@ export default function HeroSection() {
               </div>
             </div>
           </motion.div>
+          
+          {/* Booking card - Uber-style */}
           <motion.div 
-            className="w-full md:w-1/2 relative"
+            className="w-full lg:w-1/2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl border-8 border-white">
-              <img 
-                src="https://images.unsplash.com/photo-1577210897949-1f56f943a493?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
-                alt="People sharing a ride through the city" 
-                className="w-full h-auto object-cover"
-                width="600"
-                height="450"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-            </div>
+            <Card className="bg-white shadow-xl border-0 rounded-xl overflow-hidden">
+              <CardContent className="p-6">
+                <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+                  <TabsList className="grid grid-cols-2 mb-8">
+                    <TabsTrigger value="ride" className="data-[state=active]:bg-primary-500 data-[state=active]:text-white py-3">
+                      <Car className="mr-2 h-4 w-4" />
+                      Find a Ride
+                    </TabsTrigger>
+                    <TabsTrigger value="drive" className="data-[state=active]:bg-primary-500 data-[state=active]:text-white py-3">
+                      <Users className="mr-2 h-4 w-4" />
+                      Offer a Ride
+                    </TabsTrigger>
+                  </TabsList>
+                  
+                  <TabsContent value="ride" className="mt-0">
+                    <div className="space-y-4">
+                      <div className="relative">
+                        <div className="absolute left-3 top-3 text-gray-400">
+                          <MapPin className="h-5 w-5" />
+                        </div>
+                        <Input 
+                          className="pl-10 py-6 bg-gray-50 border-gray-200" 
+                          placeholder="Enter pickup location"
+                          value={fromLocation}
+                          onChange={(e) => setFromLocation(e.target.value)}
+                        />
+                      </div>
+                      
+                      <div className="relative">
+                        <div className="absolute left-3 top-3 text-gray-400">
+                          <Navigation className="h-5 w-5" />
+                        </div>
+                        <Input 
+                          className="pl-10 py-6 bg-gray-50 border-gray-200" 
+                          placeholder="Enter destination"
+                          value={toLocation}
+                          onChange={(e) => setToLocation(e.target.value)}
+                        />
+                      </div>
+                      
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="relative">
+                          <div className="absolute left-3 top-3 text-gray-400">
+                            <Calendar className="h-5 w-5" />
+                          </div>
+                          <Input 
+                            type="date"
+                            className="pl-10 py-6 bg-gray-50 border-gray-200" 
+                            placeholder="Date"
+                            value={date}
+                            onChange={(e) => setDate(e.target.value)}
+                          />
+                        </div>
+                        <div className="relative">
+                          <div className="absolute left-3 top-3 text-gray-400">
+                            <Clock className="h-5 w-5" />
+                          </div>
+                          <Input 
+                            type="time"
+                            className="pl-10 py-6 bg-gray-50 border-gray-200" 
+                            placeholder="Time"
+                            value={time}
+                            onChange={(e) => setTime(e.target.value)}
+                          />
+                        </div>
+                      </div>
+                      
+                      <Link href="/auth">
+                        <Button className="w-full py-6 text-lg font-medium bg-primary-500 hover:bg-primary-600">
+                          <Search className="mr-2 h-5 w-5" /> Find Rides
+                        </Button>
+                      </Link>
+                    </div>
+                  </TabsContent>
+                  
+                  <TabsContent value="drive" className="mt-0">
+                    <div className="space-y-4">
+                      <div className="relative">
+                        <div className="absolute left-3 top-3 text-gray-400">
+                          <MapPin className="h-5 w-5" />
+                        </div>
+                        <Input 
+                          className="pl-10 py-6 bg-gray-50 border-gray-200" 
+                          placeholder="Your starting point"
+                          value={fromLocation}
+                          onChange={(e) => setFromLocation(e.target.value)}
+                        />
+                      </div>
+                      
+                      <div className="relative">
+                        <div className="absolute left-3 top-3 text-gray-400">
+                          <Navigation className="h-5 w-5" />
+                        </div>
+                        <Input 
+                          className="pl-10 py-6 bg-gray-50 border-gray-200" 
+                          placeholder="Your destination"
+                          value={toLocation}
+                          onChange={(e) => setToLocation(e.target.value)}
+                        />
+                      </div>
+                      
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="relative">
+                          <div className="absolute left-3 top-3 text-gray-400">
+                            <Calendar className="h-5 w-5" />
+                          </div>
+                          <Input 
+                            type="date"
+                            className="pl-10 py-6 bg-gray-50 border-gray-200" 
+                            placeholder="Date"
+                            value={date}
+                            onChange={(e) => setDate(e.target.value)}
+                          />
+                        </div>
+                        <div className="relative">
+                          <div className="absolute left-3 top-3 text-gray-400">
+                            <Clock className="h-5 w-5" />
+                          </div>
+                          <Input 
+                            type="time"
+                            className="pl-10 py-6 bg-gray-50 border-gray-200" 
+                            placeholder="Time"
+                            value={time}
+                            onChange={(e) => setTime(e.target.value)}
+                          />
+                        </div>
+                      </div>
+                      
+                      <Link href="/auth">
+                        <Button className="w-full py-6 text-lg font-medium bg-primary-500 hover:bg-primary-600">
+                          <Car className="mr-2 h-5 w-5" /> Offer a Ride
+                        </Button>
+                      </Link>
+                    </div>
+                  </TabsContent>
+                </Tabs>
+              </CardContent>
+            </Card>
+            
+            {/* Stats cards floating around */}
             <motion.div 
-              className="absolute -bottom-6 -left-6 bg-white rounded-lg shadow-lg p-5 max-w-xs border border-neutral-100"
+              className="absolute -bottom-6 -left-6 bg-white rounded-lg shadow-lg p-4 max-w-xs border border-neutral-100 hidden md:block"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-secondary-50 rounded-full flex items-center justify-center text-secondary-500">
-                  <Leaf className="h-6 w-6" />
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 bg-secondary-50 rounded-full flex items-center justify-center text-secondary-500">
+                  <Leaf className="h-5 w-5" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-neutral-600">CO2 Reduced This Month</p>
-                  <p className="text-xl font-bold text-secondary-600">12,450 kg</p>
+                  <p className="text-xs font-medium text-neutral-600">CO2 Reduced This Month</p>
+                  <p className="text-sm font-bold text-secondary-600">12,450 kg</p>
                 </div>
               </div>
             </motion.div>
+            
             <motion.div 
-              className="absolute -top-4 -right-4 bg-white rounded-lg shadow-lg p-5 max-w-xs border border-neutral-100"
+              className="absolute -top-4 -right-4 bg-white rounded-lg shadow-lg p-4 max-w-xs border border-neutral-100 hidden md:block"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-3">
                 <div className="flex flex-shrink-0 -space-x-2">
-                  <div className="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center text-primary-500 border-2 border-white">
+                  <div className="w-7 h-7 rounded-full bg-primary-100 flex items-center justify-center text-primary-500 border-2 border-white">
                     <span className="text-xs font-bold">JD</span>
                   </div>
-                  <div className="w-8 h-8 rounded-full bg-primary-200 flex items-center justify-center text-primary-600 border-2 border-white">
+                  <div className="w-7 h-7 rounded-full bg-primary-200 flex items-center justify-center text-primary-600 border-2 border-white">
                     <span className="text-xs font-bold">KS</span>
-                  </div>
-                  <div className="w-8 h-8 rounded-full bg-primary-300 flex items-center justify-center text-white border-2 border-white">
-                    <span className="text-xs font-bold">MP</span>
                   </div>
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-neutral-600">Average Savings</p>
-                  <p className="text-xl font-bold text-primary-600">$175/month</p>
+                  <p className="text-xs font-medium text-neutral-600">Average Savings</p>
+                  <p className="text-sm font-bold text-primary-600">$175/month</p>
                 </div>
               </div>
             </motion.div>
