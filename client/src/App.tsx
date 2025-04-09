@@ -10,7 +10,7 @@ import AuthPage from "@/pages/auth-page";
 import DashboardPage from "@/pages/dashboard-page";
 import HelpPage from "@/pages/help-page";
 import ThreeDShowcase from "@/pages/3d-showcase";
-import ThreeDExperience from "@/pages/3d-experience";
+import ThreeDExperience from "@/pages/3d-experience.jsx";
 
 function Router() {
   return (
