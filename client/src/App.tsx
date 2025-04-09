@@ -10,6 +10,7 @@ import AuthPage from "@/pages/auth-page";
 import DashboardPage from "@/pages/dashboard-page";
 import HelpPage from "@/pages/help-page";
 import ThreeDShowcase from "@/pages/3d-showcase";
+import ThreeDExperience from "@/pages/3d-experience";
 
 function Router() {
   return (
@@ -17,7 +18,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/auth" component={AuthPage} />
       <Route path="/help" component={HelpPage} />
-      <Route path="/3d" component={ThreeDShowcase} />
+      <Route path="/3d" component={ThreeDExperience} />
       <ProtectedRoute path="/dashboard" component={DashboardPage} />
       <Route component={NotFound} />
     </Switch>
