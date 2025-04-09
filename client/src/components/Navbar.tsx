@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Car, UserCircle, LogOut } from "lucide-react";
+import { Menu, X, Car, UserCircle, LogOut, HelpCircle } from "lucide-react";
 import { useAuth } from "@/hooks/use-auth";
 import {
   DropdownMenu,
@@ -81,6 +81,11 @@ export default function Navbar() {
               <Link href="/" className="text-neutral-700 hover:text-primary-600 transition-colors font-medium">Home</Link>
             )}
             
+            <Link href="/help" className="text-neutral-700 hover:text-primary-600 transition-colors font-medium flex items-center">
+              <HelpCircle className="w-4 h-4 mr-1" />
+              Help
+            </Link>
+            
             {user ? (
               <>
                 <Link href="/dashboard" className="text-neutral-700 hover:text-primary-600 transition-colors font-medium">
@@ -159,6 +164,13 @@ export default function Navbar() {
               Home
             </Link>
           )}
+          
+          <Link href="/help" className="block w-full text-left px-3 py-2 rounded-md text-base font-medium hover:bg-primary-50 hover:text-primary-600">
+            <div className="flex items-center">
+              <HelpCircle className="w-4 h-4 mr-2" />
+              Help
+            </div>
+          </Link>
           
           {user ? (
             <>

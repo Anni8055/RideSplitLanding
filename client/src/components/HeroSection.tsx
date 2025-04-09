@@ -3,10 +3,12 @@ import { Input } from "@/components/ui/input";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { Leaf, MapPin, Users, ArrowRight, Car, Calendar, Clock, Search, Navigation } from "lucide-react";
-import { useState } from "react";
+import { Leaf, MapPin, Users, ArrowRight, Car, Search, Navigation } from "lucide-react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import carpoolingImage from "../assets/carpooling.svg";
+import UberTimeSelect from "./UberTimeSelect";
+import UberDateSelect from "./UberDateSelect";
 
 export default function HeroSection() {
   const [fromLocation, setFromLocation] = useState("");
@@ -15,6 +17,13 @@ export default function HeroSection() {
   const [time, setTime] = useState("");
   const [activeTab, setActiveTab] = useState("ride");
   const [, navigate] = useLocation();
+  
+  // Set default date to today
+  useEffect(() => {
+    if (!time) {
+      setTime("now");
+    }
+  }, []);
 
   // Function to handle the get started action
   const handleGetStarted = () => {
@@ -141,47 +150,8 @@ export default function HeroSection() {
                       </div>
                       
                       <div className="grid grid-cols-2 gap-4">
-                        <div className="relative">
-                          <div className="absolute left-3 top-3 text-gray-400">
-                            <Calendar className="h-5 w-5" />
-                          </div>
-                          <Input 
-                            type="date"
-                            className="pl-10 py-6 bg-gray-50 border-gray-200" 
-                            placeholder="Date"
-                            value={date}
-                            onChange={(e) => setDate(e.target.value)}
-                          />
-                        </div>
-                        <div className="relative">
-                          <div className="absolute left-3 top-3 z-10 text-gray-400">
-                            <Clock className="h-5 w-5" />
-                          </div>
-                          <select
-                            className="w-full pl-10 py-[1.45rem] bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
-                            value={time}
-                            onChange={(e) => setTime(e.target.value)}
-                          >
-                            <option value="">Select time</option>
-                            <option value="05:00">5:00 AM</option>
-                            <option value="06:00">6:00 AM</option>
-                            <option value="07:00">7:00 AM</option>
-                            <option value="08:00">8:00 AM</option>
-                            <option value="09:00">9:00 AM</option>
-                            <option value="10:00">10:00 AM</option>
-                            <option value="11:00">11:00 AM</option>
-                            <option value="12:00">12:00 PM</option>
-                            <option value="13:00">1:00 PM</option>
-                            <option value="14:00">2:00 PM</option>
-                            <option value="15:00">3:00 PM</option>
-                            <option value="16:00">4:00 PM</option>
-                            <option value="17:00">5:00 PM</option>
-                            <option value="18:00">6:00 PM</option>
-                            <option value="19:00">7:00 PM</option>
-                            <option value="20:00">8:00 PM</option>
-                            <option value="21:00">9:00 PM</option>
-                          </select>
-                        </div>
+                        <UberDateSelect value={date} onChange={setDate} />
+                        <UberTimeSelect value={time} onChange={setTime} />
                       </div>
                       
                       <Link href="/auth">
@@ -219,47 +189,8 @@ export default function HeroSection() {
                       </div>
                       
                       <div className="grid grid-cols-2 gap-4">
-                        <div className="relative">
-                          <div className="absolute left-3 top-3 text-gray-400">
-                            <Calendar className="h-5 w-5" />
-                          </div>
-                          <Input 
-                            type="date"
-                            className="pl-10 py-6 bg-gray-50 border-gray-200" 
-                            placeholder="Date"
-                            value={date}
-                            onChange={(e) => setDate(e.target.value)}
-                          />
-                        </div>
-                        <div className="relative">
-                          <div className="absolute left-3 top-3 z-10 text-gray-400">
-                            <Clock className="h-5 w-5" />
-                          </div>
-                          <select
-                            className="w-full pl-10 py-[1.45rem] bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
-                            value={time}
-                            onChange={(e) => setTime(e.target.value)}
-                          >
-                            <option value="">Select time</option>
-                            <option value="05:00">5:00 AM</option>
-                            <option value="06:00">6:00 AM</option>
-                            <option value="07:00">7:00 AM</option>
-                            <option value="08:00">8:00 AM</option>
-                            <option value="09:00">9:00 AM</option>
-                            <option value="10:00">10:00 AM</option>
-                            <option value="11:00">11:00 AM</option>
-                            <option value="12:00">12:00 PM</option>
-                            <option value="13:00">1:00 PM</option>
-                            <option value="14:00">2:00 PM</option>
-                            <option value="15:00">3:00 PM</option>
-                            <option value="16:00">4:00 PM</option>
-                            <option value="17:00">5:00 PM</option>
-                            <option value="18:00">6:00 PM</option>
-                            <option value="19:00">7:00 PM</option>
-                            <option value="20:00">8:00 PM</option>
-                            <option value="21:00">9:00 PM</option>
-                          </select>
-                        </div>
+                        <UberDateSelect value={date} onChange={setDate} />
+                        <UberTimeSelect value={time} onChange={setTime} />
                       </div>
                       
                       <Link href="/auth">
@@ -308,19 +239,12 @@ export default function HeroSection() {
                 </div>
                 <div>
                   <p className="text-xs font-medium text-neutral-600">Average Savings</p>
-                  <p className="text-sm font-bold text-primary-600">$175/month</p>
+                  <p className="text-sm font-bold text-primary-600">₹4,500/month</p>
                 </div>
               </div>
             </motion.div>
           </motion.div>
         </div>
-      </div>
-      
-      {/* Wave decoration at bottom of hero */}
-      <div className="absolute bottom-0 left-0 right-0 h-16 sm:h-24">
-        <svg viewBox="0 0 1440 100" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-          <path fill="#FFFFFF" fillOpacity="1" d="M0,64L80,58.7C160,53,320,43,480,48C640,53,800,75,960,74.7C1120,75,1280,53,1360,42.7L1440,32L1440,100L1360,100C1280,100,1120,100,960,100C800,100,640,100,480,100C320,100,160,100,80,100L0,100Z"></path>
-        </svg>
       </div>
     </section>
   );
