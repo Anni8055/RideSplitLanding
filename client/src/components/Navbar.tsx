@@ -91,6 +91,11 @@ export default function Navbar() {
               Experience
             </Link>
             
+            <Link href="/3d-interactive" className="text-neutral-700 hover:text-purple-600 transition-colors font-medium flex items-center">
+              <span className="w-4 h-4 mr-1 text-purple-500">🚗</span>
+              Interactive 3D
+            </Link>
+            
             {user ? (
               <>
                 <Link href="/dashboard" className="text-neutral-700 hover:text-primary-600 transition-colors font-medium">
@@ -181,6 +186,13 @@ export default function Navbar() {
             <div className="flex items-center">
               <span className="w-5 h-5 mr-2 text-primary-500 font-semibold">3D</span>
               Experience
+            </div>
+          </Link>
+          
+          <Link href="/3d-interactive" className="block w-full text-left px-3 py-2 rounded-md text-base font-medium hover:bg-purple-50 hover:text-purple-600">
+            <div className="flex items-center">
+              <span className="w-5 h-5 mr-2 text-purple-500">🚗</span>
+              Interactive 3D
             </div>
           </Link>
           

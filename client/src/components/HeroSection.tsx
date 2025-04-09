@@ -66,6 +66,15 @@ export default function HeroSection() {
               Join affordable carpools for your daily commute. Save money and reduce your carbon footprint with RideSplit.
             </p>
             
+            <div className="mb-6">
+              <Link href="/3d-interactive">
+                <Button className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 shadow-lg text-base px-6 py-6 font-semibold flex items-center gap-2 transform transition-all hover:scale-105">
+                  <span className="text-lg mr-1">🚗</span> Experience RideSplit in 3D
+                  <ArrowRight className="ml-1 h-5 w-5" />
+                </Button>
+              </Link>
+            </div>
+            
             <div className="mt-8 flex flex-wrap gap-6">
               <div className="flex items-center">
                 <div className="bg-primary-50 p-2 rounded-full mr-3">
