@@ -580,41 +580,44 @@ const ThreeDStoryExperience = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-primary-50 to-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <Link href="/">
-          <Button variant="ghost" className="mb-6">
-            <ArrowLeft className="mr-2 h-4 w-4" /> Back to Home
-          </Button>
-        </Link>
+      <div className="w-full py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center mb-8">
+            <Link href="/">
+              <Button variant="ghost" className="flex items-center">
+                <ArrowLeft className="mr-2 h-4 w-4" /> Back to Home
+              </Button>
+            </Link>
+            
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={toggleMute} 
+              className="flex items-center gap-2"
+            >
+              {muted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />} 
+              {muted ? "Unmute" : "Mute"} Audio
+            </Button>
+          </div>
 
-        <div className="text-center mb-8">
-          <h1 className="text-4xl sm:text-5xl font-bold text-neutral-800 mb-4">
-            <span className="text-primary-500">RideSplit</span> Journey Experience
-          </h1>
-          <p className="text-lg text-neutral-600 max-w-3xl mx-auto">
-            Experience how RideSplit connects people, saves the environment, and makes commuting fun.
-          </p>
+          <div className="text-center mb-8">
+            <h1 className="text-4xl sm:text-5xl font-bold text-neutral-800 mb-4">
+              <span className="text-primary-500">RideSplit</span> Journey Experience
+            </h1>
+            <p className="text-lg text-neutral-600 max-w-3xl mx-auto">
+              Experience how RideSplit connects people, saves the environment, and makes commuting fun.
+            </p>
+          </div>
+
+          {/* Background audio */}
+          <audio 
+            ref={audioRef} 
+            src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" 
+            loop 
+          />
+
         </div>
-
-        {/* Background audio */}
-        <audio 
-          ref={audioRef} 
-          src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" 
-          loop 
-        />
         
-        <div className="flex justify-end mb-4">
-          <Button 
-            variant="outline" 
-            size="sm" 
-            onClick={toggleMute} 
-            className="flex items-center gap-2"
-          >
-            {muted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />} 
-            {muted ? "Unmute" : "Mute"} Audio
-          </Button>
-        </div>
-
         {!showScene ? (
           <motion.div
             className="flex flex-col items-center py-20"
@@ -667,13 +670,13 @@ const ThreeDStoryExperience = () => {
           </motion.div>
         ) : (
           <motion.div
-            className="flex flex-col items-center"
+            className="w-full"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
             {/* Scene Progress */}
-            <div className="w-full max-w-4xl mb-4">
+            <div className="w-full max-w-4xl mx-auto mb-6">
               <div className="flex justify-between mb-2">
                 {scenes.map((scene) => (
                   <div 
@@ -692,57 +695,193 @@ const ThreeDStoryExperience = () => {
               </div>
             </div>
             
-            {/* 3D Scene Display */}
-            <div className="w-full aspect-[16/9] bg-white rounded-xl shadow-xl overflow-hidden mb-8 relative">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentScene}
-                  className="absolute inset-0"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  {renderSceneContent()}
-                </motion.div>
-              </AnimatePresence>
-            </div>
-
-            <div className="flex gap-4 mb-12">
-              <Button
-                className="flex items-center gap-2 bg-white text-primary-600 border border-primary-200 hover:bg-primary-50 shadow"
-                onClick={resetExperience}
-              >
-                <RefreshCw className="h-4 w-4" /> Restart Journey
-              </Button>
-              
-              {currentScene < scenes.length - 1 && (
-                <Button
-                  className="flex items-center gap-2"
-                  onClick={() => setCurrentScene(currentScene + 1)}
-                >
-                  Skip to Next Scene
-                </Button>
-              )}
-            </div>
-            
-            {/* Scene Description */}
-            <div className="text-center max-w-xl mx-auto mb-12">
-              <p className="text-sm text-neutral-500">
-                Scene {currentScene + 1} of {scenes.length}: {scenes[currentScene].description}
-              </p>
-            </div>
-            
-            {/* Final CTA only on the last scene */}
-            {currentScene === scenes.length - 1 && (
-              <div className="mt-8 text-center">
-                <Link href="/auth">
-                  <Button className="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 px-8 py-3 text-lg">
-                    Get Started with RideSplit
+            {/* Split View Layout */}
+            <div className="flex flex-col lg:flex-row gap-6 mb-8">
+              {/* Left Side - 3D Scene */}
+              <div className="w-full lg:w-1/2">
+                <div className="bg-white rounded-xl shadow-xl overflow-hidden h-[400px] md:h-[500px] relative">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={currentScene}
+                      className="absolute inset-0"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      {renderSceneContent()}
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+                
+                <div className="mt-4 flex gap-4">
+                  <Button
+                    className="flex items-center gap-2 bg-white text-primary-600 border border-primary-200 hover:bg-primary-50 shadow"
+                    onClick={resetExperience}
+                  >
+                    <RefreshCw className="h-4 w-4" /> Restart
                   </Button>
-                </Link>
+                  
+                  {currentScene < scenes.length - 1 && (
+                    <Button
+                      className="flex items-center gap-2"
+                      onClick={() => setCurrentScene(currentScene + 1)}
+                    >
+                      Skip
+                    </Button>
+                  )}
+                </div>
+                
+                <div className="mt-4 text-center">
+                  <p className="text-sm text-neutral-500">
+                    Scene {currentScene + 1} of {scenes.length}: {scenes[currentScene].description}
+                  </p>
+                </div>
               </div>
-            )}
+              
+              {/* Right Side - Stats/Info */}
+              <div className="w-full lg:w-1/2">
+                <div className="bg-white rounded-xl shadow-xl h-[400px] md:h-[500px] p-6 overflow-auto">
+                  {currentScene === 7 ? (
+                    <div className="h-full flex flex-col">
+                      <h2 className="text-2xl font-bold text-primary-700 mb-4">RideSplit Impact</h2>
+                      
+                      <div className="space-y-6 flex-1">
+                        <motion.div 
+                          className="bg-white p-5 rounded-lg shadow-sm border border-gray-100"
+                          whileHover={{ y: -5, boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1)' }}
+                        >
+                          <div className="flex items-center mb-2">
+                            <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                              <TreePine className="h-5 w-5 text-green-600" />
+                            </div>
+                            <h3 className="text-lg font-bold">CO₂ Saved</h3>
+                          </div>
+                          <p className="text-2xl font-bold text-green-600">{stats.co2Saved.toLocaleString()} kg</p>
+                          <p className="text-neutral-600 mt-1 text-sm">Equivalent to planting {Math.floor(stats.co2Saved / 25)} trees</p>
+                        </motion.div>
+                        
+                        <motion.div 
+                          className="bg-white p-5 rounded-lg shadow-sm border border-gray-100"
+                          whileHover={{ y: -5, boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1)' }}
+                        >
+                          <div className="flex items-center mb-2">
+                            <div className="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center mr-4">
+                              <Car className="h-5 w-5 text-primary-600" />
+                            </div>
+                            <h3 className="text-lg font-bold">Rides Shared</h3>
+                          </div>
+                          <p className="text-2xl font-bold text-primary-600">{stats.ridesShared.toLocaleString()}</p>
+                          <p className="text-neutral-600 mt-1 text-sm">Reducing traffic by {Math.floor(stats.ridesShared / 2)} cars</p>
+                        </motion.div>
+                        
+                        <motion.div 
+                          className="bg-white p-5 rounded-lg shadow-sm border border-gray-100"
+                          whileHover={{ y: -5, boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1)' }}
+                        >
+                          <div className="flex items-center mb-2">
+                            <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mr-4">
+                              <Users className="h-5 w-5 text-purple-600" />
+                            </div>
+                            <h3 className="text-lg font-bold">Friends Made</h3>
+                          </div>
+                          <p className="text-2xl font-bold text-purple-600">{stats.friendsMade.toLocaleString()}</p>
+                          <p className="text-neutral-600 mt-1 text-sm">Creating a community of riders</p>
+                        </motion.div>
+                      </div>
+                      
+                      <div className="mt-auto pt-4">
+                        <Link href="/auth" className="w-full block">
+                          <Button className="w-full bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700">
+                            Join RideSplit Today
+                          </Button>
+                        </Link>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="h-full flex flex-col">
+                      <h2 className="text-2xl font-bold text-primary-700 mb-4">How RideSplit Works</h2>
+                      
+                      <div className="space-y-4 mb-6 flex-1">
+                        <div className={`p-4 rounded-lg border ${currentScene === 0 ? 'border-primary-500 bg-primary-50' : 'border-gray-200'}`}>
+                          <h3 className="font-bold flex items-center">
+                            <span className="w-6 h-6 rounded-full bg-primary-500 text-white flex items-center justify-center mr-2 text-sm">1</span>
+                            Start journey
+                          </h3>
+                          <p className="text-sm text-neutral-600 mt-1">Car owners offer rides on their usual routes</p>
+                        </div>
+                        
+                        <div className={`p-4 rounded-lg border ${currentScene >= 1 && currentScene <= 3 ? 'border-primary-500 bg-primary-50' : 'border-gray-200'}`}>
+                          <h3 className="font-bold flex items-center">
+                            <span className="w-6 h-6 rounded-full bg-primary-500 text-white flex items-center justify-center mr-2 text-sm">2</span>
+                            Pick up riders
+                          </h3>
+                          <p className="text-sm text-neutral-600 mt-1">Multiple riders join along the route</p>
+                        </div>
+                        
+                        <div className={`p-4 rounded-lg border ${currentScene === 4 ? 'border-primary-500 bg-primary-50' : 'border-gray-200'}`}>
+                          <h3 className="font-bold flex items-center">
+                            <span className="w-6 h-6 rounded-full bg-primary-500 text-white flex items-center justify-center mr-2 text-sm">3</span>
+                            Share the ride
+                          </h3>
+                          <p className="text-sm text-neutral-600 mt-1">Everyone travels together, saving costs and reducing emissions</p>
+                        </div>
+                        
+                        <div className={`p-4 rounded-lg border ${currentScene === 5 ? 'border-primary-500 bg-primary-50' : 'border-gray-200'}`}>
+                          <h3 className="font-bold flex items-center">
+                            <span className="w-6 h-6 rounded-full bg-primary-500 text-white flex items-center justify-center mr-2 text-sm">4</span>
+                            Reach destination
+                          </h3>
+                          <p className="text-sm text-neutral-600 mt-1">Arrive at the common destination together</p>
+                        </div>
+                        
+                        <div className={`p-4 rounded-lg border ${currentScene === 6 ? 'border-primary-500 bg-primary-50' : 'border-gray-200'}`}>
+                          <h3 className="font-bold flex items-center">
+                            <span className="w-6 h-6 rounded-full bg-primary-500 text-white flex items-center justify-center mr-2 text-sm">5</span>
+                            Make friends
+                          </h3>
+                          <p className="text-sm text-neutral-600 mt-1">Build community with like-minded people</p>
+                        </div>
+                      </div>
+                      
+                      <div className="mt-auto pt-4">
+                        <div className="p-4 bg-gray-50 rounded-lg">
+                          <h3 className="font-semibold text-primary-700">Benefits:</h3>
+                          <ul className="mt-2 space-y-2">
+                            <li className="flex items-center">
+                              <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center mr-2">
+                                <span className="text-green-600 text-xs">✓</span>
+                              </div>
+                              <span className="text-sm">Reduce your carbon footprint</span>
+                            </li>
+                            <li className="flex items-center">
+                              <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center mr-2">
+                                <span className="text-green-600 text-xs">✓</span>
+                              </div>
+                              <span className="text-sm">Save money on transportation</span>
+                            </li>
+                            <li className="flex items-center">
+                              <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center mr-2">
+                                <span className="text-green-600 text-xs">✓</span>
+                              </div>
+                              <span className="text-sm">Make new friends on your commute</span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+            
+            <div className="text-center max-w-xl mx-auto">
+              <Link href="/auth">
+                <Button className="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 px-8 py-3 text-lg">
+                  Get Started with RideSplit
+                </Button>
+              </Link>
+            </div>
           </motion.div>
         )}
       </div>
