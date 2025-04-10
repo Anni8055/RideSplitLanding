@@ -1,0 +1,14 @@
+declare module 'sonner';
+declare module 'components/ui/toaster';
+declare module 'hooks/use-auth';
+declare module 'lib/protected-route';
+declare module 'pages/not-found';
+declare module 'pages/Home';
+declare module 'pages/auth-page';
+declare module 'pages/dashboard-page';
+declare module 'pages/help-page';
+declare module 'pages/3d-story.jsx';
+declare module 'pages/3d-experience';
+declare module 'components/3D/BasicCar';
+declare module 'components/ui/button';
+declare module 'components/ui/card';
